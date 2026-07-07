@@ -1,0 +1,300 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --font-family: 'Tajawal', 'Inter', 'CircularSp', sans-serif;
+
+  /* ============================================================
+     PROFESSIONAL DESIGN SYSTEM TOKENS
+     Based on open-design craft + best UI/UX practices
+     - Strict color discipline (neutrals 70-90%, one accent)
+     - 4px spacing grid
+     - Semantic elevation & states
+     - Preserve exact theme colors
+  ============================================================ */
+
+  /* ─── Zawamil Light Mode (Professional & Elegant) ─── */
+  --background: #FDF5EF;
+  --foreground: #271D13;
+  --card: #FFFFFF;
+  --card-foreground: #110A06;
+  --popover: #FFFFFF;
+  --popover-foreground: #110A06;
+  --primary: #B86729; /* Rich Copper / Deep Gold — ACCENT (use sparingly) */
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5E8DE;
+  --secondary-foreground: #3F2B1C;
+  --muted: #F5E8DE;
+  --muted-foreground: #8C7561;
+  --accent: #EBD9CA;
+  --accent-foreground: #B86729;
+  --destructive: #E53E3E;
+  --destructive-foreground: #FFFFFF;
+  --border: #EBD9CA;
+  --input: transparent;
+  --input-background: #FFFFFF;
+  --switch-background: #D9C5B2;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #B86729;
+  --radius: 0.75rem;
+
+  /* Spacing scale (4px base grid) */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+
+  /* Elevation / Shadows (semantic) */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Sidebar Light */
+  --sidebar: #FAF0E8;
+  --sidebar-foreground: #3F2B1C;
+  --sidebar-primary: #B86729;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #EBD9CA;
+  --sidebar-accent-foreground: #110A06;
+  --sidebar-border: #EBD9CA;
+  --sidebar-ring: #B86729;
+
+  /* Admin specific */
+  --admin-bg: #FDF5EF;
+  --admin-sidebar: #FAF0E8;
+  --admin-sidebar-border: #EBD9CA;
+  --admin-header: #FFFFFF;
+}
+
+.dark {
+  /* Spotify System: Content-first darkness — preserve exact colors */
+  --background: #121212;
+  --foreground: #ffffff;
+  --card: #181818;
+  --card-foreground: #ffffff;
+  --popover: #282828;
+  --popover-foreground: #ffffff;
+  --primary: #1ed760;
+  --primary-foreground: #000000;
+  --secondary: #1f1f1f;
+  --secondary-foreground: #b3b3b3;
+  --muted: #1f1f1f;
+  --muted-foreground: #b3b3b3;
+  --accent: #2a2a2a;
+  --accent-foreground: #ffffff;
+  --destructive: #f3727f;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.07);
+  --input: rgba(255, 255, 255, 0.05);
+  --input-background: #1f1f1f;
+  --switch-background: #535353;
+  --ring: #1ed760;
+
+  /* Spacing scale (same as light) */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+
+  /* Elevation (darker theme) */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+
+  /* Sidebar dark */
+  --sidebar: #000000;
+  --sidebar-foreground: #b3b3b3;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.05);
+  --sidebar-ring: #1ed760;
+
+  /* Admin dark */
+  --admin-bg: #121212;
+  --admin-sidebar: #000000;
+  --admin-sidebar-border: rgba(255, 255, 255, 0.05);
+  --admin-header: #121212;
+}
+
+@theme inline {
+  /* Core colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-full: 9999px;
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Spacing (use as class or var(--spacing-4) etc.) */
+  --spacing-0: var(--spacing-0);
+  --spacing-1: var(--spacing-1);
+  --spacing-2: var(--spacing-2);
+  --spacing-3: var(--spacing-3);
+  --spacing-4: var(--spacing-4);
+  --spacing-5: var(--spacing-5);
+  --spacing-6: var(--spacing-6);
+  --spacing-8: var(--spacing-8);
+  --spacing-10: var(--spacing-10);
+  --spacing-12: var(--spacing-12);
+
+  /* Elevation */
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-family);
+    direction: rtl;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    font-size: var(--font-size);
+    font-family: var(--font-family);
+  }
+
+  /* ============================================================
+     OPEN-DESIGN CRAFT TYPOGRAPHY (strict letter-spacing + rhythm)
+     See: craft/typography.md, color.md
+     Body = 0 tracking. Small = +0.01..0.02em. Display uses tight.
+     Line heights per open-design guidance.
+  ============================================================ */
+  h1, .text-display {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+  h2, .text-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  p, .text-body {
+    line-height: 1.58;
+    letter-spacing: 0;
+  }
+
+  .text-small, small, .caption {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.015em;
+  }
+
+  button, .btn {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  input, textarea, select {
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  /* Poetry / long-form Arabic needs slightly more leading */
+  .poetry, .text-poetry {
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* ============================================================
+   OPEN-DESIGN ANIMATION DISCIPLINE + REDUCED MOTION
+   - 150ms default state feedback
+   - Respect prefers-reduced-motion: strip translate/scale/rotate
+   - See craft/animation-discipline.md
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Allow only opacity/color for state changes */
+  .motion-safe,
+  [data-motion] {
+    transform: none !important;
+  }
+}
+
+/* Base motion helpers following open-design (curve for opacity/color, spring for physical) */
+.motion-safe {
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1); /* M3 front-loaded */
+}

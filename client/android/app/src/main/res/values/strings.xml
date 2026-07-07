@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Zawamil</string>
+    <string name="title_activity_main">Zawamil</string>
+    <string name="package_name">com.hidar.zawamil</string>
+    <string name="custom_url_scheme">com.hidar.zawamil</string>
+</resources>

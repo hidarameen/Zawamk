@@ -1,0 +1,93 @@
+@import "tailwindcss";
+@import "./theme.css";
+@import "./fonts.css";
+
+/* ============================================================
+   PROFESSIONAL UI UTILITIES & DESIGN SYSTEM
+   Single source for glass, hover, loading, focus (open-design aligned)
+============================================================ */
+
+/* Glassmorphism — consistent professional glass */
+@utility glass-panel {
+  @apply bg-background/80 backdrop-blur-2xl border-b border-border/40;
+}
+@utility glass-card {
+  @apply bg-card/60 backdrop-blur-xl border border-border/40 shadow-lg;
+}
+@utility glass-sidebar {
+  @apply bg-sidebar/90 backdrop-blur-2xl border-l border-border/30;
+}
+
+/* Consistent hover states for cards (use on all content cards) */
+@utility hover-card-scale {
+  @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md;
+}
+
+/* Base resets & Professional Scrollbar */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
+  }
+  
+  /* Unified elegant scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/60;
+  }
+
+  /* WCAG + open-design strong focus */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius);
+  }
+}
+
+/* Ambient glow — uses only theme token */
+.ambient-glow {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 50vw;
+  height: 50vh;
+  background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+  opacity: 0.1;
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Utility constraints */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Professional loading shimmer (state coverage) */
+.shimmer {
+  background: linear-gradient(90deg, var(--color-muted) 25%, var(--color-accent) 50%, var(--color-muted) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  @apply rounded;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

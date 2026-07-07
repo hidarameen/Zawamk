@@ -1,0 +1,51 @@
+import { useNavigate } from 'react-router';
+import { CheckCircle2 } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Artist } from "../../types";
+
+type ArtistCardProps = {
+  artist: Artist;
+};
+
+export default function ArtistCard({ artist }: ArtistCardProps) {
+  const navigate = useNavigate();
+
+  const formatFollowers = (count: number) => {
+    if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
+    if (count >= 1000) return `${(count / 1000).toFixed(1)}K`;
+    return count.toString();
+  };
+
+  return (
+    <motion.div
+      whileHover={{ y: -2 }}
+      className="group glass-card p-4 rounded-2xl cursor-pointer focus-within:ring-2 focus-within:ring-primary/30 outline-none transition-all duration-200"
+      onClick={() => navigate(`/artists/${artist.id}`)}
+      tabIndex={0}
+      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate(`/artists/${artist.id}`))}
+    >
+      <div className="relative mb-4">
+        <div className="relative w-full aspect-square rounded-full overflow-hidden ring-2 ring-border group-hover:ring-primary/40 transition-all">
+          <img
+            src={artist.avatar}
+            alt={artist.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        {artist.verified && (
+          <div className="absolute bottom-0 right-0 bg-primary rounded-full p-1 ring-2 ring-background">
+            <CheckCircle2 className="w-4 h-4 text-primary-foreground" />
+          </div>
+        )}
+      </div>
+
+      <div className="text-center">
+        <h3 className="font-semibold text-foreground mb-1 truncate">{artist.name}</h3>
+        <p className="text-xs text-muted-foreground mb-1">فنان · منشد</p>
+        <p className="text-xs text-primary font-medium">
+          {formatFollowers(artist.followers)} متابع
+        </p>
+      </div>
+    </motion.div>
+  );
+}

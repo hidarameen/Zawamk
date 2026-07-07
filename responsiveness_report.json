@@ -1,0 +1,79 @@
+{
+  "pages": {
+    "Songs.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Albums.tsx": [
+      "Hardcoded grid-cols-2,2,3 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Favorites.tsx": [
+      "Hardcoded grid-cols-2,2,2,2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "BandProfile.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Poems.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Artists.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "PoetProfile.tsx": [
+      "Fixed large height that might overflow on mobile: 'w-48 h-48 rounded-full border-4 border-background overflow-hidden shadow-2xl max-w-full'",
+      "Hardcoded grid-cols-2,2,2,2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Home.tsx": [
+      "Fixed large height that might overflow on mobile: 'h-[188px] rounded-2xl bg-secondary/40 animate-pulse'"
+    ],
+    "Bands.tsx": [
+      "Hardcoded grid-cols-2,2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "NowPlaying.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile.",
+      "Fixed large width without responsive fallback (e.g., max-w-full): 'w-[22px] h-[22px]'",
+      "Fixed large height that might overflow on mobile: 'w-[22px] h-[22px]'"
+    ],
+    "ArtistProfile.tsx": [
+      "Hardcoded grid-cols-2,2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Profile.tsx": [
+      "Hardcoded grid-cols-2,2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "OccasionDetail.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Search.tsx": [
+      "Hardcoded grid-cols-2,2,2,2,2,2,2,2,2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Landing.tsx": [
+      "Fixed large height that might overflow on mobile: 'absolute -bottom-10 -left-10 w-60 h-60 bg-purple-500/20 rounded-full blur-3xl pointer-events-none max-w-full'",
+      "Fixed large height that might overflow on mobile: 'relative h-48 rounded-2xl overflow-hidden'"
+    ],
+    "AlbumDetail.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Playlists.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "Occasions.tsx": [
+      "Fixed large height that might overflow on mobile: 'relative h-48'"
+    ],
+    "Library.tsx": [
+      "Hardcoded grid-cols-2,2,2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "AdminAlbums.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "AdminPlaylists.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ],
+    "AdminDashboard.tsx": [
+      "Hardcoded grid-cols-2 without responsive prefix (e.g., md:grid-cols-X). This forces multiple columns on mobile."
+    ]
+  },
+  "components": {
+    "drawer.tsx": [
+      "Fixed large width without responsive fallback (e.g., max-w-full): 'bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block'"
+    ]
+  }
+}

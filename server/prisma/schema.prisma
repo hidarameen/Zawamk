@@ -1,0 +1,271 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Artist {
+  id               String   @id @default(cuid())
+  name             String
+  bio              String?
+  avatar           String?
+  coverImage       String?
+  followers        Int      @default(0)
+  verified         Boolean  @default(false)
+  monthlyListeners Int      @default(0)
+  genres           String[] @default([])
+  createdAt        DateTime @default(now())
+  albums           Album[]
+  tracks           Track[]
+  videos           MusicVideo[]
+  followedBy       ArtistFollow[]
+
+  @@index([name])
+  @@index([verified])
+}
+
+model Album {
+  id          String   @id @default(cuid())
+  title       String
+  artistId    String
+  artist      Artist   @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  coverUrl    String?
+  releaseDate String?
+  totalTracks Int      @default(0)
+  duration    Int      @default(0)
+  genre       String?
+  createdAt   DateTime @default(now())
+  bandId      String?
+  band        Band?    @relation(fields: [bandId], references: [id], onDelete: Cascade)
+  tracks      Track[]
+  reviews     Review[]
+}
+
+model Track {
+  id           String  @id @default(cuid())
+  title        String
+  artistId     String
+  artist       Artist  @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  albumId      String?
+  album        Album?  @relation(fields: [albumId], references: [id], onDelete: Cascade)
+  coverUrl     String?
+  audioUrl     String?
+  duration     Int     @default(0)
+  lyrics       String?
+  type         String?
+  views        Int     @default(0)
+  likes        Int     @default(0)
+  releaseYear  Int?
+  genre        String?
+  createdAt    DateTime @default(now())
+  poetId       String?
+  poet         Poet?    @relation(fields: [poetId], references: [id], onDelete: Cascade)
+  bandId       String?
+  band         Band?    @relation(fields: [bandId], references: [id], onDelete: Cascade)
+  occasionId   String?
+  occasion     Occasion? @relation(fields: [occasionId], references: [id], onDelete: Cascade)
+  likedBy      TrackLike[]
+  playlistTracks PlaylistTrack[]
+  reviews        Review[]
+  playHistory    PlayHistory[]
+
+  @@index([artistId])
+  @@index([albumId])
+  @@index([genre])
+  @@index([views])
+}
+
+model Playlist {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  coverUrl    String?
+  ownerId     String
+  owner       User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  followers   Int      @default(0)
+  isPublic    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tracks      PlaylistTrack[]
+}
+
+model Band {
+  id           String   @id @default(cuid())
+  name         String
+  bio          String?
+  avatar       String?
+  coverImage   String?
+  membersCount Int      @default(0)
+  foundedYear  Int?
+  country      String?
+  verified     Boolean  @default(false)
+  followers    Int      @default(0)
+  style        String?
+  genres       String[] @default([])
+  tracks       Track[]
+  albums       Album[]
+}
+
+model Poet {
+  id               String   @id @default(cuid())
+  name             String
+  bio              String?
+  avatar           String?
+  coverImage       String?
+  followers        Int      @default(0)
+  verified         Boolean  @default(false)
+  era              String?
+  country          String?
+  birthYear        Int?
+  deathYear        Int?
+  monthlyListeners Int      @default(0)
+  poems            Poem[]
+  tracks           Track[]
+}
+
+model Poem {
+  id           String    @id @default(cuid())
+  title        String
+  text         String
+  poetId       String
+  poet         Poet      @relation(fields: [poetId], references: [id], onDelete: Cascade)
+  audioUrl     String?
+  videoUrl     String?
+  coverUrl     String?
+  era          String?
+  category     String?
+  verses       Int       @default(0)
+  views        Int       @default(0)
+  likes        Int       @default(0)
+  occasionId   String?
+  occasion     Occasion? @relation(fields: [occasionId], references: [id], onDelete: Cascade)
+}
+
+model NewsItem {
+  id          String   @id @default(cuid())
+  title       String
+  excerpt     String?
+  content     String
+  coverUrl    String?
+  publishedAt DateTime @default(now())
+  category    String?
+  author      String?
+  views       Int      @default(0)
+  featured    Boolean  @default(false)
+}
+
+model Occasion {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  coverUrl    String?
+  date        String?
+  type        String?
+  color       String?
+  poems       Poem[]
+  tracks      Track[]
+  videos      MusicVideo[]
+}
+
+model MusicVideo {
+  id           String   @id @default(cuid())
+  title        String
+  artistId     String?
+  artist       Artist?  @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  albumId      String?
+  poetId       String?
+  occasionId   String?
+  occasion     Occasion? @relation(fields: [occasionId], references: [id], onDelete: Cascade)
+  thumbnailUrl String?
+  videoUrl     String
+  duration     Int      @default(0)
+  views        Int      @default(0)
+  releaseDate  String?
+  type         String?
+  createdAt    DateTime @default(now())
+}
+
+model User {
+  id              String         @id @default(cuid())
+  name            String
+  email           String         @unique
+  passwordHash    String
+  avatar          String?
+  role            String         @default("user") // "user" | "admin" | "artist"
+  createdAt       DateTime       @default(now())
+  
+  likedTracks     TrackLike[]
+  followedArtists ArtistFollow[]
+  playlists       Playlist[]
+  reviews         Review[]
+  playHistory     PlayHistory[]
+}
+
+model TrackLike {
+  id        String   @id @default(cuid())
+  userId    String
+  trackId   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  track     Track    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, trackId])
+}
+
+model ArtistFollow {
+  id        String   @id @default(cuid())
+  userId    String
+  artistId  String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  artist    Artist   @relation(fields: [artistId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, artistId])
+}
+
+// Join table for playlist tracks (supports ordering)
+model PlaylistTrack {
+  id         String   @id @default(cuid())
+  playlistId String
+  playlist   Playlist @relation(fields: [playlistId], references: [id], onDelete: Cascade)
+  trackId    String
+  track      Track    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  position   Int      @default(0)
+  addedAt    DateTime @default(now())
+
+  @@unique([playlistId, trackId])
+}
+
+// Reviews / Ratings (used by ReviewSection in UI)
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trackId   String?
+  track     Track?   @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  albumId   String?
+  album     Album?   @relation(fields: [albumId], references: [id], onDelete: Cascade)
+  rating    Int      // 1-5
+  comment   String?
+  createdAt DateTime @default(now())
+
+  @@unique([userId, trackId])
+  @@unique([userId, albumId])
+}
+
+// Simple play history for recommendations & stats
+model PlayHistory {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trackId   String
+  track     Track    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  playedAt  DateTime @default(now())
+  duration  Int?
+}
+
+

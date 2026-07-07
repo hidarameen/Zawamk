@@ -1,0 +1,20 @@
+{
+  "name": "music-app",
+  "version": "1.0.0",
+  "description": "Music Streaming Platform - Frontend + Backend",
+  "private": true,
+  "scripts": {
+    "setup": "bash setup.sh",
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "dev": "bash start.sh",
+    "start": "bash start.sh",
+    "seed": "cd server && npm run seed",
+    "db:push": "cd server && npm run db:push",
+    "db:generate": "cd server && npm run db:generate",
+    "backend": "cd server && npm run dev",
+    "frontend": "cd client && npm run dev"
+  },
+  "keywords": ["music", "streaming", "react", "express", "prisma"],
+  "author": "",
+  "license": "ISC"
+}
