@@ -81,7 +81,7 @@ export default function Profile() {
         </TabsContent>
 
         <TabsContent value="playlists" className="mt-6">
-          <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {userPlaylists.length > 0 ? userPlaylists.map((playlist) => (
               <div key={playlist.id} className="bg-secondary/50 p-4 rounded-xl cursor-pointer hover:bg-secondary transition-colors">
                 <img src={playlist.coverUrl} alt={playlist.name} className="w-full aspect-square rounded-lg mb-3 object-cover" />
@@ -97,7 +97,7 @@ export default function Profile() {
         <TabsContent value="following" className="mt-6">
           <div className="bg-secondary/50 rounded-2xl p-6">
             {userFollowedArtists.length > 0 ? (
-              <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {userFollowedArtists.map(artist => (
                   <div key={artist.id} className="text-center p-4 bg-secondary/50 rounded-xl hover:bg-secondary cursor-pointer">
                     <img src={artist.avatar} alt={artist.name} className="w-20 h-20 rounded-full mx-auto mb-3 object-cover" />

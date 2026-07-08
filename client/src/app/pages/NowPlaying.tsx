@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { usePlayer } from '../contexts/PlayerContext';
 import { useAuth } from '../contexts/AuthContext';
 import { motion, AnimatePresence } from 'motion/react';
+import { EqualizerBars } from '../components/ui/EqualizerBars';
 import {
   ChevronDown, Play, Pause, SkipBack, SkipForward,
   Repeat, Shuffle, Volume2, VolumeX, Heart, List,
@@ -110,7 +111,7 @@ export default function NowPlaying() {
           <Music2 className="w-4 h-4" />
           استعرض المكتبة
         </Button>
-        <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
           {tracks.slice(0, 4).map(track => (
             <motion.button
               key={track.id}
@@ -567,7 +568,7 @@ export default function NowPlaying() {
                         <p className="text-sm font-bold text-foreground group-hover:text-primary transition-colors truncate">{track.title}</p>
                         <p className="text-xs text-muted-foreground mt-0.5 font-mono">{formatTime(track.duration)}</p>
                       </div>
-                      <Button variant="ghost" size="icon" className="w-8 h-8 rounded-full opacity-0 group-hover:opacity-100 hover:bg-white/10">
+                      <Button variant="ghost" size="icon" className="w-8 h-8 rounded-full opacity-0 group-hover:opacity-100 hover:bg-muted/30">
                         <Play className="w-4 h-4 text-primary fill-current ml-0.5" />
                       </Button>
                     </motion.div>
@@ -595,17 +596,4 @@ export default function NowPlaying() {
 }
 
 // Internal component helper
-function EqualizerBars({ active }: { active: boolean }) {
-  return (
-    <div className="flex items-end gap-[2px] h-3 w-4">
-      {[2, 4, 3, 5, 2].map((h, i) => (
-        <motion.div
-          key={i}
-          animate={active ? { height: [`${h}px`, `${h + 4}px`, `${h}px`] } : { height: '2px' }}
-          transition={{ duration: 0.4 + i * 0.1, repeat: Infinity, delay: i * 0.05 }}
-          className="flex-1 bg-primary rounded-full"
-        />
-      ))}
-    </div>
-  );
-}
+

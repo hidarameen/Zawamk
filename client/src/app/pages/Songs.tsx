@@ -6,11 +6,11 @@ import { usePlayer } from '../contexts/PlayerContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useDataStore } from '../store/dataStore';
 import { cn } from '../components/ui/utils';
+import { EqualizerBars } from '../components/ui/EqualizerBars';
 import {
   Play, Pause, Search, Grid3x3, List, Heart, Eye, Clock, Music,
   Filter, X, SortDesc, MoreHorizontal, ListPlus, TrendingUp,
   Disc, Mic2, Feather, CalendarDays, UsersRound, Flame,
-  ChevronDown, ChevronUp, Music2, Shuffle, Check, Star,
   ChevronDown, ChevronUp, Music2, Shuffle, Check, Star,
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -79,20 +79,7 @@ function TypeBadge({ type }: { type?: string }) {
   );
 }
 
-function EqualizerBars({ playing }: { playing: boolean }) {
-  return (
-    <div className="flex items-end gap-0.5 h-4 w-4">
-      {[3, 5, 4, 6, 3].map((h, i) => (
-        <motion.div
-          key={i}
-          animate={playing ? { height: [`${h}px`, `${h + 5}px`, `${h}px`] } : { height: '3px' }}
-          transition={{ duration: 0.4 + i * 0.1, repeat: Infinity, delay: i * 0.08 }}
-          className="flex-1 bg-primary rounded-full"
-        />
-      ))}
-    </div>
-  );
-}
+
 
 function FilterPill({
   label, active, onClick, color,
@@ -173,11 +160,11 @@ function SongListRow({
     <motion.div
       initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: index * 0.03, duration: 0.3 }}
+      transition={{ delay: Math.min(index * 0.02, 0.3), duration: 0.3 }}
       onClick={onPlay}
       className={cn(
         'group grid items-center gap-3 px-4 py-3 rounded-xl border cursor-pointer transition-all',
-        'grid-cols-[32px_44px_1fr_auto]',
+        'grid-cols-[24px_40px_1fr_auto]',
         'md:grid-cols-[32px_44px_1fr_140px_120px_60px_70px_80px]',
         isCurrentTrack
           ? 'bg-primary/5 border-primary/30'
@@ -185,20 +172,20 @@ function SongListRow({
       )}
     >
       {/* Index / Equalizer */}
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center w-6 md:w-8">
         {isCurrentTrack
           ? <EqualizerBars playing={isPlayingNow} />
           : (
             <>
-              <span className="text-xs text-muted-foreground group-hover:hidden">{index + 1}</span>
-              <Play className="w-3.5 h-3.5 text-primary fill-current hidden group-hover:block" />
+              <span className="text-[10px] md:text-xs text-muted-foreground group-hover:hidden">{index + 1}</span>
+              <Play className="w-3 md:w-3.5 h-3 md:h-3.5 text-primary fill-current hidden group-hover:block" />
             </>
           )
         }
       </div>
 
       {/* Cover */}
-      <div className="relative w-11 h-11 rounded-lg overflow-hidden flex-shrink-0">
+      <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-lg overflow-hidden flex-shrink-0">
         <img src={track.coverUrl} alt={track.title} className="w-full h-full object-cover" />
         {isCurrentTrack && isPlayingNow && (
           <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
@@ -434,10 +421,10 @@ export default function Songs() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-xl">
-                  <Music2 className="w-7 h-7 text-white" />
+                  <Music2 className="w-7 h-7 text-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-white text-2xl">الزوامل والأناشيد</h1>
+                  <h1 className="text-foreground text-2xl">الزوامل والأناشيد</h1>
                   <p className="text-muted-foreground text-sm mt-0.5">جميع الأعمال الفنية · مرتبطة بالفنان والشاعر والمناسبة</p>
                 </div>
               </div>
@@ -446,22 +433,22 @@ export default function Songs() {
               <div className="flex items-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-xl px-4 py-2">
                   <Music2 className="w-4 h-4 text-secondary-foreground" />
-                  <span className="text-white font-bold">{tracks.length}</span>
+                  <span className="text-foreground font-bold">{tracks.length}</span>
                   <span className="text-muted-foreground text-sm">زامل</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-xl px-4 py-2">
                   <Eye className="w-4 h-4 text-secondary-foreground" />
-                  <span className="text-white font-bold">{formatNum(totalViews)}</span>
+                  <span className="text-foreground font-bold">{formatNum(totalViews)}</span>
                   <span className="text-muted-foreground text-sm">مشاهدة</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-xl px-4 py-2">
                   <Star className="w-4 h-4 text-amber-300" />
-                  <span className="text-white font-bold">{ALL_TYPES.length}</span>
+                  <span className="text-foreground font-bold">{ALL_TYPES.length}</span>
                   <span className="text-muted-foreground text-sm">نوع فني</span>
                 </div>
                 <div className="hidden md:flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-xl px-4 py-2">
                   <Flame className="w-4 h-4 text-orange-300" />
-                  <span className="text-white text-sm truncate max-w-36">{topTrack?.title}</span>
+                  <span className="text-foreground text-sm truncate max-w-36">{topTrack?.title}</span>
                   <span className="text-muted-foreground text-xs">الأعلى</span>
                 </div>
               </div>
@@ -481,7 +468,7 @@ export default function Songs() {
                   setPlaylist(shuffled, 0);
                 }}
                 variant="outline"
-                className="border-white/30 text-white hover:bg-secondary gap-2 rounded-full px-4"
+                className="border-white/30 text-foreground hover:bg-secondary gap-2 rounded-full px-4"
               >
                 <Shuffle className="w-4 h-4" />
                 عشوائي

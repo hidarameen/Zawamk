@@ -226,7 +226,7 @@ export default function VideoDetail() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="text-white hover:bg-white/20 w-10 h-10 rounded-full bg-white/10"
+                        className="text-white hover:bg-white/20 w-10 h-10 rounded-full bg-muted/30"
                         onClick={() => { setIsPlaying(!isPlaying); if (!isPlaying) recordVideoPlay(); }}
                       >
                         {isPlaying ? <Pause className="w-5 h-5 fill-white" /> : <Play className="w-5 h-5 fill-white ml-0.5" />}

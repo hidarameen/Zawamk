@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Play, Pause, Heart, Eye, ListPlus } from 'lucide-react';
 import { Track } from '../../contexts/PlayerContext';
 import { cn } from '../ui/utils';
+import { EqualizerBars } from '../ui/EqualizerBars';
 
 // ============ Type Badge Config ============
 const TYPE_CONFIG: Record<string, { color: string; bg: string }> = {
@@ -26,20 +27,7 @@ const formatNum = (n: number): string => {
 const formatTime = (s: number): string =>
   `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`;
 
-function EqualizerBars({ playing }: { playing: boolean }) {
-  return (
-    <div className="flex items-end gap-0.5 h-4 w-4">
-      {[3, 5, 4, 6, 3].map((h, i) => (
-        <motion.div
-          key={i}
-          animate={playing ? { height: [`${h}px`, `${h + 5}px`, `${h}px`] } : { height: '3px' }}
-          transition={{ duration: 0.4 + i * 0.1, repeat: Infinity, delay: i * 0.08 }}
-          className="flex-1 bg-primary rounded-full"
-        />
-      ))}
-    </div>
-  );
-}
+
 
 export default function SongGridCard({
   track, index, isCurrentTrack, isPlayingNow, onPlay, onAddQueue, onLike, isLiked,

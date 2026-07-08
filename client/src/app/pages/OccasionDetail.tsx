@@ -135,7 +135,7 @@ export default function OccasionDetail() {
             ))}
             <Button
               onClick={handlePlayAll}
-              className="w-full p-4 bg-primary text-white font-semibold rounded-xl mt-4"
+              className="w-full p-4 bg-primary text-primary-foreground font-semibold rounded-xl mt-4"
             >
               تشغيل الكل
             </Button>

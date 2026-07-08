@@ -7,6 +7,7 @@ import { Play, Pause, Heart, MoreHorizontal, ListPlus } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '../ui/utils';
 import { motion } from 'motion/react';
+import { EqualizerBars } from '../ui/EqualizerBars';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -34,20 +35,7 @@ type TrackCardProps = {
   playlistIndex?: number;  // Index in the playlist to start from
 };
 
-function EqualizerBars({ playing }: { playing: boolean }) {
-  return (
-    <div className="flex items-end gap-0.5 h-4 w-4">
-      {[3, 5, 4, 6, 3].map((h, i) => (
-        <motion.div
-          key={i}
-          animate={playing ? { height: [`${h}px`, `${h + 4}px`, `${h}px`] } : { height: '3px' }}
-          transition={{ duration: 0.4, repeat: Infinity, delay: i * 0.08 }}
-          className="flex-1 bg-primary rounded-full"
-        />
-      ))}
-    </div>
-  );
-}
+
 
 export default function TrackCard({
   track, index, showCover = true, playlist, playlistIndex,

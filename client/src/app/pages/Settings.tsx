@@ -85,27 +85,25 @@ export default function Settings() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="space-y-2"
       >
-        <div className="flex items-center gap-3">
-          <SettingsIcon className="w-10 h-10 text-blue-500" />
-          <div>
-            <h1 className="text-3xl font-bold">الإعدادات</h1>
-            <p className="text-muted-foreground">
-              خصص تجربة الاستخدام حسب تفضيلاتك
-            </p>
-          </div>
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight mb-2">الإعدادات</h1>
+          <p className="text-muted-foreground text-sm">
+            إدارة تفضيلات حسابك وإعدادات التطبيق.
+          </p>
         </div>
       </motion.div>
 
-      <Tabs defaultValue="general" className="w-full">
-        <TabsList className="grid w-full grid-cols-1 md:grid-cols-5">
-          <TabsTrigger value="general">عام</TabsTrigger>
-          <TabsTrigger value="playback">التشغيل</TabsTrigger>
-          <TabsTrigger value="notifications">الإشعارات</TabsTrigger>
-          <TabsTrigger value="download">التنزيل</TabsTrigger>
-          <TabsTrigger value="performance">الأداء</TabsTrigger>
-        </TabsList>
+      <Tabs defaultValue="general" className="space-y-6" onValueChange={setActiveTab}>
+        <div className="-mx-4 px-4 md:mx-0 md:px-0 overflow-x-auto hide-scrollbar">
+          <TabsList className="inline-flex min-w-max md:w-auto h-auto p-1 bg-muted/50 rounded-xl">
+            <TabsTrigger value="general">عام</TabsTrigger>
+            <TabsTrigger value="playback">التشغيل</TabsTrigger>
+            <TabsTrigger value="notifications">الإشعارات</TabsTrigger>
+            <TabsTrigger value="download">التنزيل</TabsTrigger>
+            <TabsTrigger value="performance">الأداء</TabsTrigger>
+          </TabsList>
+        </div>
 
         {/* عام */}
         <TabsContent value="general" className="space-y-6">

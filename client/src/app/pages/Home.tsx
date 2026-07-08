@@ -152,7 +152,7 @@ export default function Home() {
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               المنصة الرسمية
             </div>
-            <div className="text-xs text-muted-foreground hidden sm:block">+{Math.floor(Math.random() * 1200) + 800} استماع اليوم</div>
+            <div className="text-xs text-muted-foreground hidden sm:block">+1,245 استماع اليوم</div>
           </div>
 
           <h1 className="text-foreground text-5xl md:text-7xl font-bold mb-3 tracking-[-1.5px] leading-[0.95] drop-shadow-xl">
@@ -350,7 +350,7 @@ export default function Home() {
       {/* News + Occasions - more dashboard widget style */}
       <div>
         <SectionHeader title="آخر الأخبار والمناسبات" to="/news" icon={Newspaper} />
-        <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {featuredNews.slice(0,3).map((news, i) => <NewsCard key={i} news={news} />)}
           {occasions.slice(0,2).map((occ, i) => (
             <div key={i} onClick={() => navigate(`/occasions/${occ.id}`)} className="group bg-card border border-border/60 rounded-2xl p-4 cursor-pointer hover:border-primary/40 transition flex gap-4">

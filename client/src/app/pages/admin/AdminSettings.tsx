@@ -43,7 +43,7 @@ export default function AdminSettings() {
               <Input 
                 value={settings.name}
                 onChange={e => setSettings({...settings, name: e.target.value})}
-                className="mt-2 bg-white/10 border-white/20" 
+                className="mt-2 bg-background/50 border-border/50 backdrop-blur-md" 
               />
             </div>
             <div className="flex items-center justify-between">

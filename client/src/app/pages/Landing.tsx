@@ -201,7 +201,7 @@ export default function Landing() {
             <p className="text-muted-foreground">كل ما يُنتجه اتحاد الشعراء والمنشدين في مكان واحد</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -234,7 +234,7 @@ export default function Landing() {
           >
             <h2 className="text-4xl font-bold mb-4">أقسام المنصة</h2>
           </motion.div>
-          <div className="grid md:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: FileText,

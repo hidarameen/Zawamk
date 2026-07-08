@@ -68,13 +68,13 @@ export default function Playlists() {
       <div className="flex gap-2 border-b border-white/10 pb-2">
         <button
           onClick={() => setActiveTab('mine')}
-          className={`px-4 py-2 rounded-full text-sm ${activeTab === 'mine' ? 'bg-primary text-white' : 'hover:bg-secondary'}`}
+          className={`px-4 py-2 rounded-full text-sm ${activeTab === 'mine' ? 'bg-primary text-primary-foreground' : 'hover:bg-secondary'}`}
         >
           قوائمي {myPlaylists.length ? `(${myPlaylists.length})` : ''}
         </button>
         <button
           onClick={() => setActiveTab('public')}
-          className={`px-4 py-2 rounded-full text-sm ${activeTab === 'public' ? 'bg-primary text-white' : 'hover:bg-secondary'}`}
+          className={`px-4 py-2 rounded-full text-sm ${activeTab === 'public' ? 'bg-primary text-primary-foreground' : 'hover:bg-secondary'}`}
         >
           عامة
         </button>
@@ -86,7 +86,7 @@ export default function Playlists() {
         </div>
       )}
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {displayed.map((playlist: any) => (
           <motion.div
             key={playlist.id}

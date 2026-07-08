@@ -9,6 +9,8 @@ import { SidebarProvider, useSidebarState } from '../contexts/SidebarContext';
 
 import { Toaster } from '../components/ui/sonner';
 
+import SkipToContent from '../components/accessibility/SkipToContent';
+
 function AppLayout() {
   const location = useLocation();
   const { isOpen } = useSidebarState();
@@ -21,6 +23,7 @@ function AppLayout() {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300 relative overflow-x-hidden">
       <div className="ambient-glow" />
+      <SkipToContent />
       {showMainNav && (
         <>
           <Sidebar />
@@ -29,6 +32,7 @@ function AppLayout() {
       )}
 
       <main
+        id="main-content"
         className={
           isLandingPage
             ? ''

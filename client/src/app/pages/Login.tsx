@@ -50,7 +50,7 @@ export default function Login() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-2 bg-white/10 border-white/20"
+                className="mt-2 bg-background/50 border-border/50 backdrop-blur-md"
                 required
               />
             </div>
@@ -62,7 +62,7 @@ export default function Login() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-2 bg-white/10 border-white/20"
+                className="mt-2 bg-background/50 border-border/50 backdrop-blur-md"
                 required
               />
             </div>

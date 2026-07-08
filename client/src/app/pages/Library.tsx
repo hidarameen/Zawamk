@@ -78,7 +78,7 @@ export default function Library() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {poems.map((poem) => (
                 <PoemCard key={poem.id} poem={poem} />
               ))}
@@ -91,7 +91,7 @@ export default function Library() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {(userPlaylists.length > 0 ? userPlaylists : publicPlaylists).map((playlist: any) => {
                 const trackCount = Array.isArray(playlist.tracks) ? playlist.tracks.length : (playlist.tracks?.length || 0);
                 return (

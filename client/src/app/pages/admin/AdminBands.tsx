@@ -99,7 +99,7 @@ export default function AdminBands() {
         </div>
       </Card>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filtered.map((band, i) => (
           <motion.div key={band.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="group">
             <Card className="bg-card border-border overflow-hidden hover:border-primary/30 hover:shadow-md transition-all">

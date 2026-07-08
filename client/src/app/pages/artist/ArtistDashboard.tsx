@@ -28,7 +28,7 @@ export default function ArtistDashboard() {
         <p className="text-muted-foreground">إدارة محتواك وتتبع إحصائياتك</p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
           <motion.div
             key={stat.label}
@@ -36,7 +36,7 @@ export default function ArtistDashboard() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
           >
-            <Card className="bg-secondary/50 border-white/10 p-6">
+            <Card className="bg-secondary/50 border-border/50 p-6">
               <div className="flex items-center justify-between mb-4">
                 <stat.icon className={`w-8 h-8 ${stat.color}`} />
               </div>
@@ -48,7 +48,7 @@ export default function ArtistDashboard() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <Card className="bg-secondary/50 border-white/10 p-6 max-h-[400px] overflow-y-auto">
+        <Card className="bg-secondary/50 border-border/50 p-6 max-h-[400px] overflow-y-auto">
           <h3 className="text-xl font-bold mb-4">آخر الزوامل</h3>
           <div className="space-y-2">
             {tracks.length > 0 ? tracks.map((track, i) => (
@@ -59,7 +59,7 @@ export default function ArtistDashboard() {
           </div>
         </Card>
 
-        <Card className="bg-secondary/50 border-white/10 p-6">
+        <Card className="bg-secondary/50 border-border/50 p-6">
           <h3 className="text-xl font-bold mb-4">الإحصائيات الشهرية</h3>
           <p className="text-muted-foreground">تفاصيل أدائك الشهري</p>
         </Card>

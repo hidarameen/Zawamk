@@ -130,7 +130,7 @@ export default function Search() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {['إنشاد إسلامي', 'موسيقى تراثية', 'موشحات', 'شعر جاهلي', 'شعر معاصر', 'مدائح نبوية', 'أناشيد وطنية', 'قرآن كريم'].map((genre) => (
               <motion.div
                 key={genre}

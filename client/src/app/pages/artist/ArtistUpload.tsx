@@ -112,7 +112,7 @@ export default function ArtistUpload() {
                 placeholder="رابط الملف الصوتي (اختياري)"
                 value={audioUrlInput}
                 onChange={(e) => setAudioUrlInput(e.target.value)}
-                className="mt-3 bg-white/10"
+                className="mt-3 bg-background/50 backdrop-blur-md border border-border/50"
               />
             </div>
           )}
@@ -123,7 +123,7 @@ export default function ArtistUpload() {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="mt-2 bg-white/10 border-white/20"
+              className="mt-2 bg-background/50 border-border/50 backdrop-blur-md"
               required
             />
           </div>
@@ -134,7 +134,7 @@ export default function ArtistUpload() {
               id="album"
               value={album}
               onChange={(e) => setAlbum(e.target.value)}
-              className="mt-2 bg-white/10 border-white/20"
+              className="mt-2 bg-background/50 border-border/50 backdrop-blur-md"
             />
           </div>
 
@@ -144,7 +144,7 @@ export default function ArtistUpload() {
               id="lyrics"
               value={lyrics}
               onChange={(e) => setLyrics(e.target.value)}
-              className="mt-2 bg-white/10 border-white/20 min-h-[200px]"
+              className="mt-2 bg-background/50 border-border/50 backdrop-blur-md min-h-[200px]"
             />
           </div>
 

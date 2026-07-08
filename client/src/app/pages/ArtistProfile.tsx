@@ -79,7 +79,7 @@ export default function ArtistProfile() {
                   <span className="text-sm text-[#1ed760] font-bold">فنان موثق</span>
                 </div>
               )}
-              <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white tracking-tighter drop-shadow-lg">{artist.name}</h1>
+              <h1 className="text-5xl md:text-7xl font-bold mb-4 text-foreground tracking-tighter drop-shadow-lg">{artist.name}</h1>
               <p className="text-lg text-secondary-foreground font-medium">
                 {(artist.monthlyListeners / 1000000).toFixed(1)}M مستمع شهرياً
               </p>
@@ -94,11 +94,11 @@ export default function ArtistProfile() {
               size="lg"
               variant="outline"
               onClick={() => followArtist(artist.id)}
-              className="rounded-full px-6 border-white/30 text-white hover:bg-secondary hover:border-white font-bold tracking-wide"
+              className="rounded-full px-6 border-white/30 text-foreground hover:bg-secondary hover:border-white font-bold tracking-wide"
             >
               {isFollowing ? 'متابع' : 'متابعة'}
             </Button>
-            <Button size="icon" variant="ghost" className="rounded-full w-12 h-12 text-muted-foreground hover:text-white hover:bg-secondary">
+            <Button size="icon" variant="ghost" className="rounded-full w-12 h-12 text-muted-foreground hover:text-foreground hover:bg-secondary">
               <Share2 className="w-5 h-5" />
             </Button>
           </div>
@@ -146,7 +146,7 @@ export default function ArtistProfile() {
                 <span className="font-semibold text-muted-foreground">تصفية حسب:</span>
                 
                 <select 
-                  className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-purple-500"
                   value={filterPoet}
                   onChange={(e) => setFilterPoet(e.target.value)}
                 >
@@ -161,7 +161,7 @@ export default function ArtistProfile() {
                 <ArrowDownAZ className="w-5 h-5 text-muted-foreground" />
                 <span className="font-semibold text-muted-foreground">الترتيب:</span>
                 <select 
-                  className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-purple-500"
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                 >
@@ -198,7 +198,7 @@ export default function ArtistProfile() {
           <div className="bg-secondary/50 rounded-2xl p-8">
             <h2 className="text-2xl font-bold mb-4">عن {artist.name}</h2>
             <p className="text-muted-foreground text-lg mb-6">{artist.bio}</p>
-            <div className="grid md:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div>
                 <div className="text-3xl font-bold text-purple-400 mb-1">
                   {(artist.followers / 1000000).toFixed(1)}M
