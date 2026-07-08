@@ -18,13 +18,13 @@ const colorOptions = [
 ];
 
 interface OccasionForm {
-  title: string; description: string; date: string; type: string; coverUrl: string; color: string;
+  title: string; description: string; date: string; type: string; coverUrl: string; color: string; trackIds: string[];
 }
 
-const defaultForm: OccasionForm = { title: '', description: '', date: '', type: '', coverUrl: '', color: colorOptions[0].value };
+const defaultForm: OccasionForm = { title: '', description: '', date: '', type: '', coverUrl: '', color: colorOptions[0].value, trackIds: [] };
 
 export default function AdminOccasions() {
-  const { occasions: storeOccasions, addEntity, updateEntity, deleteEntity } = useDataStore();
+  const { occasions: storeOccasions, tracks: storeTracks, addEntity, updateEntity, deleteEntity } = useDataStore();
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);

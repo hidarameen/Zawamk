@@ -60,8 +60,12 @@ router.post('/albums', authenticateToken, async (req: AuthRequest, res) => {
 
 router.put('/albums/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const data = req.body;
-    const updated = await prisma.album.update({ where: { id: req.params.id as string }, data });
+    const { trackIds, ...data } = req.body;
+    const updateData: any = { ...data };
+    if (trackIds && Array.isArray(trackIds)) {
+      updateData.tracks = { set: trackIds.map((id: string) => ({ id })) };
+    }
+    const updated = await prisma.album.update({ where: { id: req.params.id as string }, data: updateData, include: { tracks: true } });
     res.json(updated);
   } catch (err) { handleError(res, err); }
 });
@@ -143,16 +147,24 @@ router.delete('/playlists/:id', authenticateToken, requireAdmin, async (req, res
 
 router.post('/bands', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const data = req.body;
-    const newBand = await prisma.band.create({ data });
+    const { trackIds, ...data } = req.body;
+    const createData: any = { ...data };
+    if (trackIds && Array.isArray(trackIds)) {
+      createData.tracks = { connect: trackIds.map((id: string) => ({ id })) };
+    }
+    const newBand = await prisma.band.create({ data: createData, include: { tracks: true } });
     res.json(newBand);
   } catch (err) { handleError(res, err); }
 });
 
 router.put('/bands/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const data = req.body;
-    const updated = await prisma.band.update({ where: { id: req.params.id as string }, data });
+    const { trackIds, ...data } = req.body;
+    const updateData: any = { ...data };
+    if (trackIds && Array.isArray(trackIds)) {
+      updateData.tracks = { set: trackIds.map((id: string) => ({ id })) };
+    }
+    const updated = await prisma.band.update({ where: { id: req.params.id as string }, data: updateData, include: { tracks: true } });
     res.json(updated);
   } catch (err) { handleError(res, err); }
 });
@@ -237,16 +249,24 @@ router.delete('/news/:id', authenticateToken, requireAdmin, async (req, res) => 
 
 router.post('/occasions', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const data = req.body;
-    const newOccasion = await prisma.occasion.create({ data });
+    const { trackIds, ...data } = req.body;
+    const createData: any = { ...data };
+    if (trackIds && Array.isArray(trackIds)) {
+      createData.tracks = { connect: trackIds.map((id: string) => ({ id })) };
+    }
+    const newOccasion = await prisma.occasion.create({ data: createData, include: { tracks: true } });
     res.json(newOccasion);
   } catch (err) { handleError(res, err); }
 });
 
 router.put('/occasions/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const data = req.body;
-    const updated = await prisma.occasion.update({ where: { id: req.params.id as string }, data });
+    const { trackIds, ...data } = req.body;
+    const updateData: any = { ...data };
+    if (trackIds && Array.isArray(trackIds)) {
+      updateData.tracks = { set: trackIds.map((id: string) => ({ id })) };
+    }
+    const updated = await prisma.occasion.update({ where: { id: req.params.id as string }, data: updateData, include: { tracks: true } });
     res.json(updated);
   } catch (err) { handleError(res, err); }
 });

@@ -12,15 +12,15 @@ const genreOptions = ['إنشاد إسلامي', 'أناشيد وطنية', 'م�
 
 interface AlbumForm {
   title: string; artistId: string; bandId: string; releaseDate: string;
-  genre: string; coverUrl: string; totalTracks: string;
+  genre: string; coverUrl: string; totalTracks: string; trackIds: string[];
 }
 
 const defaultForm: AlbumForm = {
-  title: '', artistId: '', bandId: '', releaseDate: '', genre: '', coverUrl: '', totalTracks: '',
+  title: '', artistId: '', bandId: '', releaseDate: '', genre: '', coverUrl: '', totalTracks: '', trackIds: [],
 };
 
 export default function AdminAlbums() {
-  const { albums: storeAlbums, artists, bands, addEntity, updateEntity, deleteEntity } = useDataStore();
+  const { albums: storeAlbums, artists, bands, tracks: storeTracks, addEntity, updateEntity, deleteEntity } = useDataStore();
   const [filterArtist, setFilterArtist] = useState('all');
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
