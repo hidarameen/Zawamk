@@ -8,23 +8,20 @@ import { Poet } from "../../types";
 import { useDataStore } from "../../../app/store/dataStore";
 import { FileUpload } from '../../components/ui/FileUpload';
 
-const eraOptions = ['جاهلي', 'إسلامي', 'أموي', 'عباسي', 'أندلسي', 'مملوكي', 'عثماني', 'حديث', 'معاصر'];
-const countryOptions = ['السعودية', 'مصر', 'العراق', 'سوريا', 'الأردن', 'الإمارات', 'الكويت', 'المغرب', 'الجزيرة العربية', 'فارس'];
-
 interface PoetForm {
   name: string; bio: string; avatar: string; coverImage: string;
-  era: string; country: string; birthYear: string; deathYear: string; verified: boolean;
+  verified: boolean;
 }
 
 const defaultForm: PoetForm = {
   name: '', bio: '', avatar: '', coverImage: '',
-  era: '', country: '', birthYear: '', deathYear: '', verified: false,
+  verified: false,
 };
 
 export default function AdminPoets() {
   const { poets: storePoets, addEntity, updateEntity, deleteEntity } = useDataStore();
   const [search, setSearch] = useState('');
-  const [filterEra, setFilterEra] = useState('الكل');
+  
   const [showModal, setShowModal] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
   const [form, setForm] = useState<PoetForm>(defaultForm);
@@ -33,16 +30,15 @@ export default function AdminPoets() {
   const filtered = useMemo(() => {
     return storePoets.filter(p => {
       if (search && !p.name.includes(search)) return false;
-      if (filterEra !== 'الكل' && p.era !== filterEra) return false;
+      
       return true;
     });
-  }, [storePoets, search, filterEra]);
+  }, [storePoets, search]);
 
   const openAdd = () => { setForm(defaultForm); setEditId(null); setShowModal(true); };
   const openEdit = (p: Poet) => {
     setForm({
       name: p.name, bio: p.bio, avatar: p.avatar, coverImage: p.coverImage,
-      era: p.era, country: p.country, birthYear: String(p.birthYear || ''), deathYear: String(p.deathYear || ''),
       verified: p.verified,
     });
     setEditId(p.id);
@@ -51,12 +47,7 @@ export default function AdminPoets() {
 
   const handleSave = async () => {
     if (!form.name) { toast.error('يرجى إدخال اسم الشاعر'); return; }
-
-    const payload = {
-      ...form,
-      birthYear: form.birthYear ? parseInt(form.birthYear, 10) : null,
-      deathYear: form.deathYear ? parseInt(form.deathYear, 10) : null,
-    };
+    const payload = { ...form };
 
     if (editId) {
       const success = await updateEntity('poets', editId, payload);
@@ -77,7 +68,7 @@ export default function AdminPoets() {
     setDeleteId(null);
   };
 
-  const eras = ['الكل', ...Array.from(new Set(storePoets.map(p => p.era)))];
+  
 
   return (
     <div className="space-y-5">
@@ -99,14 +90,7 @@ export default function AdminPoets() {
               placeholder="ابحث في الشعراء..."
               className="w-full bg-background border border-border rounded-xl pr-10 pl-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary/50" />
           </div>
-          <div className="flex items-center gap-1 flex-wrap">
-            {eras.map(e => (
-              <button key={e} onClick={() => setFilterEra(e)}
-                className={`px-3 py-1.5 rounded-lg text-xs transition-all ${filterEra === e ? 'bg-primary text-primary-foreground' : 'bg-background border border-border text-muted-foreground hover:text-foreground'}`}>
-                {e}
-              </button>
-            ))}
-          </div>
+
         </div>
       </Card>
 
@@ -116,9 +100,7 @@ export default function AdminPoets() {
             <thead>
               <tr className="border-b border-border bg-muted/30">
                 <th className="px-4 py-3 text-right text-xs font-semibold text-muted-foreground">الشاعر</th>
-                <th className="px-4 py-3 text-right text-xs font-semibold text-muted-foreground">العصر</th>
-                <th className="px-4 py-3 text-right text-xs font-semibold text-muted-foreground">البلد</th>
-                <th className="px-4 py-3 text-right text-xs font-semibold text-muted-foreground">الحياة</th>
+                
                 <th className="px-4 py-3 text-right text-xs font-semibold text-muted-foreground">المتابعون</th>
                 <th className="px-4 py-3 text-right text-xs font-semibold text-muted-foreground">إجراءات</th>
               </tr>
@@ -139,11 +121,7 @@ export default function AdminPoets() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3"><span className="text-xs bg-amber-500/10 text-amber-600 dark:text-amber-400 px-2 py-1 rounded-full">{poet.era}</span></td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">{poet.country}</td>
-                  <td className="px-4 py-3 text-xs text-muted-foreground">
-                    {poet.birthYear && poet.deathYear ? `${poet.birthYear} - ${poet.deathYear}` : poet.birthYear || '—'}
-                  </td>
+                  
                   <td className="px-4 py-3 text-sm text-muted-foreground">
                     {poet.followers >= 1000000 ? `${(poet.followers / 1000000).toFixed(1)}م` : `${(poet.followers / 1000).toFixed(0)}ك`}
                   </td>
@@ -189,36 +167,7 @@ export default function AdminPoets() {
                     rows={3} placeholder="نبذة عن الشاعر..."
                     className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary/50 resize-none" />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm text-foreground mb-1.5">العصر</label>
-                    <select value={form.era} onChange={e => setForm(f => ({ ...f, era: e.target.value }))}
-                      className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary/50">
-                      <option value="">اختر العصر</option>
-                      {eraOptions.map(e => <option key={e} value={e}>{e}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm text-foreground mb-1.5">البلد</label>
-                    <select value={form.country} onChange={e => setForm(f => ({ ...f, country: e.target.value }))}
-                      className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary/50">
-                      <option value="">اختر البلد</option>
-                      {countryOptions.map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm text-foreground mb-1.5">سنة الميلاد</label>
-                    <input type="number" value={form.birthYear} onChange={e => setForm(f => ({ ...f, birthYear: e.target.value }))}
-                      placeholder="مثل: 1923"
-                      className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary/50" />
-                  </div>
-                  <div>
-                    <label className="block text-sm text-foreground mb-1.5">سنة الوفاة</label>
-                    <input type="number" value={form.deathYear} onChange={e => setForm(f => ({ ...f, deathYear: e.target.value }))}
-                      placeholder="اتركه فارغاً إن كان حياً"
-                      className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary/50" />
-                  </div>
-                </div>
+                
                 <div>
                   <label className="block text-sm text-foreground mb-1.5">رابط الصورة الشخصية</label>
                   <FileUpload value={form.avatar} onChange={(url) => setForm(f => ({ ...f, avatar: url }))} accept="image/*" />

@@ -8,7 +8,6 @@ export default function Poets() {
     const { poets } = useDataStore();
   const [selectedEra, setSelectedEra] = useState<string>('الكل');
 
-  const eras = ['الكل', 'جاهلي', 'إسلامي', 'أموي', 'عباسي', 'أندلسي', 'حديث', 'معاصر'];
 
   const filteredPoets = selectedEra === 'الكل'
     ? poets

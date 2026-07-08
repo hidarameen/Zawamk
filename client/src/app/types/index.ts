@@ -73,7 +73,6 @@ export interface Band {
   coverImage?: string;
   membersCount: number;
   foundedYear?: number;
-  country?: string;
   verified: boolean;
   followers: number;
   style?: string;
@@ -87,10 +86,6 @@ export interface Poet {
   coverImage?: string;
   followers: number;
   verified: boolean;
-  era?: string;
-  country?: string;
-  birthYear?: number;
-  deathYear?: number;
   monthlyListeners: number;
 }
 
@@ -103,7 +98,6 @@ export interface Poem {
   audioUrl?: string;
   videoUrl?: string;
   coverUrl?: string;
-  era?: string;
   category?: string;
   verses: number;
   views: number;

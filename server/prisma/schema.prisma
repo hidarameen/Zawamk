@@ -118,10 +118,6 @@ model Poet {
   coverImage       String?
   followers        Int      @default(0)
   verified         Boolean  @default(false)
-  era              String?
-  country          String?
-  birthYear        Int?
-  deathYear        Int?
   monthlyListeners Int      @default(0)
   poems            Poem[]
   tracks           Track[]
