@@ -51,12 +51,19 @@ export default function AdminPoets() {
 
   const handleSave = async () => {
     if (!form.name) { toast.error('يرجى إدخال اسم الشاعر'); return; }
+
+    const payload = {
+      ...form,
+      birthYear: form.birthYear ? parseInt(form.birthYear, 10) : null,
+      deathYear: form.deathYear ? parseInt(form.deathYear, 10) : null,
+    };
+
     if (editId) {
-      const success = await updateEntity('poets', editId, form);
+      const success = await updateEntity('poets', editId, payload);
       if (success) toast.success('تم تحديث بيانات الشاعر');
       else toast.error('فشل التحديث');
     } else {
-      const success = await addEntity('poets', form);
+      const success = await addEntity('poets', payload);
       if (success) toast.success('تمت إضافة الشاعر بنجاح');
       else toast.error('فشل الإضافة');
     }
