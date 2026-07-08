@@ -23,7 +23,7 @@ function formatPlays(p?: number) {
   return p >= 1000000 ? `${(p / 1000000).toFixed(1)}م` : p >= 1000 ? `${(p / 1000).toFixed(0)}ك` : String(p);
 }
 
-const genreOptions = ['إنشاد إسلامي', 'نشيد وطني', 'موسيقى تراثية', 'موشحات', 'أناشيد أطفال', 'تلاوة', 'مديح نبوي'];
+const typeOptions = ['زامل', 'نشيد', 'مرثية', 'أوبريت'];
 
 interface SongFormData {
   title: string;
@@ -32,7 +32,7 @@ interface SongFormData {
   poetId: string;
   bandId: string;
   occasionId: string;
-  genre: string;
+  type: string;
   duration: number;
   coverUrl: string;
   audioUrl: string;
@@ -41,7 +41,7 @@ interface SongFormData {
 
 const defaultForm: SongFormData = {
   title: '', artistId: '', albumId: '', poetId: '', bandId: '',
-  occasionId: '', genre: '', duration: 0, coverUrl: '', audioUrl: '', lyrics: '',
+  occasionId: '', type: '', duration: 0, coverUrl: '', audioUrl: '', lyrics: '',
 };
 
 export default function AdminSongs() {
@@ -349,12 +349,12 @@ export default function AdminSongs() {
                   <div>
                     <label className="block text-sm text-foreground mb-1.5">النوع الفني</label>
                     <select
-                      value={form.genre}
-                      onChange={e => setForm(f => ({ ...f, genre: e.target.value }))}
+                      value={form.type}
+                      onChange={e => setForm(f => ({ ...f, type: e.target.value }))}
                       className="w-full bg-background border border-border rounded-xl px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary/50"
                     >
                       <option value="">اختر النوع</option>
-                      {genreOptions.map(g => <option key={g} value={g}>{g}</option>)}
+                      {typeOptions.map(t => <option key={t} value={t}>{t}</option>)}
                     </select>
                   </div>
                   <div>

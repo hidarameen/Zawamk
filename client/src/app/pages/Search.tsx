@@ -87,7 +87,7 @@ export default function Search() {
 
         {/* Type filters - open-design faceted search */}
         <div className="flex flex-wrap gap-2 pt-2">
-          {['all', 'نشيد', 'زامل', 'مدح', 'قصيدة', 'أنشودة'].map((t) => (
+          {['all', 'زامل', 'نشيد', 'مرثية', 'أوبريت'].map((t) => (
             <button
               key={t}
               onClick={() => setActiveType(t)}

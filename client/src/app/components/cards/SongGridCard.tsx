@@ -7,16 +7,7 @@ import { cn } from '../ui/utils';
 import { EqualizerBars } from '../ui/EqualizerBars';
 
 // ============ Type Badge Config ============
-const TYPE_CONFIG: Record<string, { color: string; bg: string }> = {
-  'نشيد':    { color: 'text-violet-700 dark:text-violet-300',  bg: 'bg-violet-100 dark:bg-violet-900/40 border-violet-200 dark:border-violet-700/50' },
-  'زامل':    { color: 'text-amber-700 dark:text-amber-300',    bg: 'bg-amber-100 dark:bg-amber-900/40 border-amber-200 dark:border-amber-700/50' },
-  'مدح':     { color: 'text-emerald-700 dark:text-emerald-300',bg: 'bg-emerald-100 dark:bg-emerald-900/40 border-emerald-200 dark:border-emerald-700/50' },
-  'ابتهال':  { color: 'text-sky-700 dark:text-sky-300',        bg: 'bg-sky-100 dark:bg-sky-900/40 border-sky-200 dark:border-sky-700/50' },
-  'موشح':    { color: 'text-rose-700 dark:text-rose-300',      bg: 'bg-rose-100 dark:bg-rose-900/40 border-rose-200 dark:border-rose-700/50' },
-  'قصيدة':   { color: 'text-orange-700 dark:text-orange-300',  bg: 'bg-orange-100 dark:bg-orange-900/40 border-orange-200 dark:border-orange-700/50' },
-  'أنشودة':  { color: 'text-teal-700 dark:text-teal-300',      bg: 'bg-teal-100 dark:bg-teal-900/40 border-teal-200 dark:border-teal-700/50' },
-  'تواشيح':  { color: 'text-indigo-700 dark:text-indigo-300',  bg: 'bg-indigo-100 dark:bg-indigo-900/40 border-indigo-200 dark:border-indigo-700/50' },
-};
+import { TYPE_CONFIG } from '../../../constants/trackTypes';
 
 const formatNum = (n: number): string => {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}م`;
