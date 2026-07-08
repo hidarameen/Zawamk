@@ -132,7 +132,7 @@ export default function SongGridCard({
           onClick={e => e.stopPropagation()}
           className="text-xs text-muted-foreground hover:text-primary transition-colors block truncate"
         >
-          {track.artistName}
+          {track.collaborators?.length ? `${track.artistName}، ${track.collaborators.map(c => c.name).join('، ')}` : track.artistName}
         </Link>
 
         {track.poetName && (

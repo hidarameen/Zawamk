@@ -148,7 +148,7 @@ app.get('/api/tracks', async (req, res) => {
     prisma.track.findMany({
       skip,
       take: limit,
-      include: { artist: true, album: true, poet: true, band: true, occasion: true },
+      include: { artist: true, collaborators: true, album: true, poet: true, band: true, occasion: true },
       orderBy: { createdAt: 'desc' } // Default sort
     }),
     prisma.track.count()
@@ -167,14 +167,14 @@ app.get('/api/tracks', async (req, res) => {
 
 app.get('/api/tracks/all', async (req, res) => {
   // Legacy endpoint for when the frontend needs all tracks
-  const tracks = await prisma.track.findMany({ include: { artist: true, album: true, poet: true, band: true, occasion: true } });
+  const tracks = await prisma.track.findMany({ include: { artist: true, collaborators: true, album: true, poet: true, band: true, occasion: true } });
   res.json(tracks);
 });
 
 app.get('/api/tracks/:id', async (req, res) => {
   const track = await prisma.track.findUnique({
     where: { id: req.params.id },
-    include: { artist: true, album: true, poet: true, band: true, occasion: true },
+    include: { artist: true, collaborators: true, album: true, poet: true, band: true, occasion: true },
   });
   if (track) res.json(track);
   else res.status(404).json({ error: 'Track not found' });

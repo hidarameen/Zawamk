@@ -20,6 +20,7 @@ model Artist {
   createdAt        DateTime @default(now())
   albums           Album[]
   tracks           Track[]
+  collabTracks     Track[] @relation("TrackCollaborators")
   videos           MusicVideo[]
   followedBy       ArtistFollow[]
 
@@ -49,6 +50,7 @@ model Track {
   title        String
   artistId     String
   artist       Artist  @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  collaborators Artist[] @relation("TrackCollaborators")
   albumId      String?
   album        Album?  @relation(fields: [albumId], references: [id], onDelete: Cascade)
   coverUrl     String?

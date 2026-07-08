@@ -154,7 +154,7 @@ export default function TrackCard({
             onClick={e => e.stopPropagation()}
             className="text-xs text-muted-foreground hover:text-primary transition-colors truncate"
           >
-            {track.artistName}
+            {track.collaborators?.length ? `${track.artistName} بمشاركة ${track.collaborators.map(c => c.name).join(' و ')}` : track.artistName}
           </Link>
           {track.poetName && (
             <>

@@ -146,7 +146,7 @@ export default function PlayerBar() {
                   <img src={currentTrack.coverUrl} className="w-10 h-10 rounded-md object-cover" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm text-primary font-bold truncate">{currentTrack.title}</p>
-                    <p className="text-xs text-foreground/80 truncate">{currentTrack.artistName}</p>
+                    <p className="text-xs text-foreground/80 truncate">{currentTrack.collaborators?.length ? `${currentTrack.artistName}، ${currentTrack.collaborators.map(c => c.name).join('، ')}` : currentTrack.artistName}</p>
                   </div>
                   <div className="flex items-end gap-[2px] h-3 w-4 px-2">
                     {[1, 3, 2, 4].map((h, i) => (
@@ -247,7 +247,7 @@ export default function PlayerBar() {
               >
                 <img 
                   src={currentTrack.coverUrl} 
-                  alt={`${currentTrack.title} — ${currentTrack.artistName}`}
+                  alt={`${currentTrack.title} — ${currentTrack.collaborators?.length ? `${currentTrack.artistName}، ${currentTrack.collaborators.map(c => c.name).join('، ')}` : currentTrack.artistName}`}
                   className={cn(
                     "w-10 h-10 md:w-12 md:h-12 rounded-full object-cover shadow-sm border-2 border-border group-hover:border-primary/50 transition-colors",
                     isPlaying ? "motion-safe animate-[spin_8s_linear_infinite]" : ""
@@ -268,7 +268,7 @@ export default function PlayerBar() {
                     to={`/artists/${currentTrack.artistId}`}
                     className="text-[10px] md:text-xs text-muted-foreground hover:text-foreground transition-colors truncate"
                   >
-                    {currentTrack.artistName}
+                    {currentTrack.collaborators?.length ? `${currentTrack.artistName}، ${currentTrack.collaborators.map(c => c.name).join('، ')}` : currentTrack.artistName}
                   </Link>
                   {currentTrack.type && (
                     <>

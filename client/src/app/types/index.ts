@@ -3,6 +3,7 @@ export interface Track {
   title: string;
   artistId: string;
   artist?: Artist;
+  collaborators?: Artist[];
   artistName: string;
   albumId?: string;
   album?: Album;

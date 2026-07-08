@@ -75,19 +75,38 @@ router.delete('/albums/:id', authenticateToken, requireAdmin, async (req, res) =
 
 router.post('/tracks', authenticateToken, async (req: AuthRequest, res) => {
   try {
-    const data = req.body;
+    const { collaboratorIds, ...data } = req.body;
     if (!canManageContent(req, data.artistId)) {
       return res.status(403).json({ error: 'Not authorized to add tracks' });
     }
-    const newTrack = await prisma.track.create({ data });
+    
+    const createData: any = { ...data };
+    if (collaboratorIds && Array.isArray(collaboratorIds)) {
+      createData.collaborators = {
+        connect: collaboratorIds.map((id: string) => ({ id }))
+      };
+    }
+    
+    const newTrack = await prisma.track.create({ data: createData, include: { collaborators: true } });
     res.json(newTrack);
   } catch (err) { handleError(res, err); }
 });
 
 router.put('/tracks/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const data = req.body;
-    const updated = await prisma.track.update({ where: { id: req.params.id as string }, data });
+    const { collaboratorIds, ...data } = req.body;
+    const updateData: any = { ...data };
+    
+    if (collaboratorIds && Array.isArray(collaboratorIds)) {
+      updateData.collaborators = {
+        set: collaboratorIds.map((id: string) => ({ id }))
+      };
+    } else if (collaboratorIds === null || collaboratorIds === undefined) {
+       // if they explicitly passed empty or we want to clear it?
+       // Usually if it's an array we set it, otherwise ignore.
+    }
+    
+    const updated = await prisma.track.update({ where: { id: req.params.id as string }, data: updateData, include: { collaborators: true } });
     res.json(updated);
   } catch (err) { handleError(res, err); }
 });
