@@ -178,7 +178,7 @@ router.delete('/bands/:id', authenticateToken, requireAdmin, async (req, res) =>
 
 router.post('/poets', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const data = req.body;
+    const { era, country, birthYear, deathYear, ...data } = req.body;
     const newPoet = await prisma.poet.create({ data });
     res.json(newPoet);
   } catch (err) { handleError(res, err); }
@@ -186,7 +186,7 @@ router.post('/poets', authenticateToken, requireAdmin, async (req, res) => {
 
 router.put('/poets/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const data = req.body;
+    const { era, country, birthYear, deathYear, ...data } = req.body;
     const updated = await prisma.poet.update({ where: { id: req.params.id as string }, data });
     res.json(updated);
   } catch (err) { handleError(res, err); }

@@ -117,7 +117,7 @@ export default function AdminPoets() {
                           {poet.name}
                           {poet.verified && <Check className="w-3.5 h-3.5 text-primary" />}
                         </p>
-                        <p className="text-xs text-muted-foreground line-clamp-1">{poet.bio.substring(0, 50)}...</p>
+                        <p className="text-xs text-muted-foreground line-clamp-1">{(poet.bio || '').substring(0, 50)}...</p>
                       </div>
                     </div>
                   </td>
