@@ -145,6 +145,9 @@ function FilterSection({
           </motion.div>
         )}
       </AnimatePresence>
+      {displayCount < filteredTracks.length && (
+        <div ref={observerRef} className="h-20 flex items-center justify-center text-muted-foreground"><Loader2 className="w-6 h-6 animate-spin" /></div>
+      )}
     </div>
   );
 }
@@ -398,6 +401,24 @@ export default function Songs() {
   const typeCounts: Record<string, number> = {};
   tracks.forEach(t => { if (t.type) typeCounts[t.type] = (typeCounts[t.type] || 0) + 1; });
 
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && displayCount < filteredTracks.length) {
+          setDisplayCount(prev => prev + 50);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (observerRef.current) observer.observe(observerRef.current);
+    return () => observer.disconnect();
+  }, [filteredTracks.length, displayCount]);
+
+  // Reset display count when filters change
+  useEffect(() => {
+    setDisplayCount(50);
+  }, [searchQuery, filters]);
   return (
     <div className="space-y-6 pb-4">
       {/* ======== Hero ======== */}
@@ -599,6 +620,9 @@ export default function Songs() {
               </motion.div>
             )}
           </AnimatePresence>
+      {displayCount < filteredTracks.length && (
+        <div ref={observerRef} className="h-20 flex items-center justify-center text-muted-foreground"><Loader2 className="w-6 h-6 animate-spin" /></div>
+      )}
         </div>
 
         {/* View Toggle */}
@@ -734,6 +758,9 @@ export default function Songs() {
           </motion.div>
         )}
       </AnimatePresence>
+      {displayCount < filteredTracks.length && (
+        <div ref={observerRef} className="h-20 flex items-center justify-center text-muted-foreground"><Loader2 className="w-6 h-6 animate-spin" /></div>
+      )}
 
       {/* ======== Active Filter Chips (when panel is closed) ======== */}
       {activeFilterCount > 0 && !showFilters && (
@@ -807,7 +834,7 @@ export default function Songs() {
             exit={{ opacity: 0 }}
             className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3"
           >
-            {filteredTracks.map((track, i) => (
+            {filteredTracks.slice(0, displayCount).map((track, i) => (
               <SongGridCard
                 key={track.id}
                 track={track}
@@ -840,7 +867,7 @@ export default function Songs() {
               <span className="text-center">المدة</span>
               <span className="text-left">المشاهدات</span>
             </div>
-            {filteredTracks.map((track, i) => (
+            {filteredTracks.slice(0, displayCount).map((track, i) => (
               <SongListRow
                 key={track.id}
                 track={track}
@@ -856,6 +883,9 @@ export default function Songs() {
           </motion.div>
         )}
       </AnimatePresence>
+      {displayCount < filteredTracks.length && (
+        <div ref={observerRef} className="h-20 flex items-center justify-center text-muted-foreground"><Loader2 className="w-6 h-6 animate-spin" /></div>
+      )}
 
       {/* ======== Empty State ======== */}
       {filteredTracks.length === 0 && (
