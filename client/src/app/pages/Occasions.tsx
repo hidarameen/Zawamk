@@ -95,15 +95,15 @@ export default function Occasions() {
                 <div className="flex items-center gap-4 text-xs text-muted-foreground pt-1">
                   <span className="flex items-center gap-1.5">
                     <Music className="w-3.5 h-3.5 text-primary" />
-                    {occasion.trackIds.length} أنشودة
+                    {occasion.trackIds?.length || occasion.tracks?.length || 0} أنشودة
                   </span>
                   <span className="flex items-center gap-1.5">
                     <FileText className="w-3.5 h-3.5 text-primary" />
-                    {occasion.poemIds.length} قصيدة
+                    {occasion.poemIds?.length || occasion.poems?.length || 0} قصيدة
                   </span>
                   <span className="flex items-center gap-1.5">
                     <Video className="w-3.5 h-3.5 text-primary" />
-                    {occasion.videoIds.length} فيديو
+                    {occasion.videoIds?.length || occasion.videos?.length || 0} فيديو
                   </span>
                 </div>
               </div>

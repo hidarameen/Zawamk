@@ -1,17 +1,10 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
-import { User, Filter } from 'lucide-react';
+import { User } from 'lucide-react';
 import PoetCard from '../components/cards/PoetCard';
 import { useDataStore } from "../../app/store/dataStore";
 
 export default function Poets() {
     const { poets } = useDataStore();
-  const [selectedEra, setSelectedEra] = useState<string>('الكل');
-
-
-  const filteredPoets = selectedEra === 'الكل'
-    ? poets
-    : poets.filter(poet => poet.era === selectedEra);
 
   return (
     <div className="p-6 pb-32 space-y-6">
@@ -26,38 +19,13 @@ export default function Poets() {
           <h1 className="text-3xl font-bold">الشعراء</h1>
         </div>
         <p className="text-muted-foreground">
-          تعرف على أعظم الشعراء العرب عبر التاريخ
+          تعرف على أعظم الشعراء
         </p>
       </motion.div>
 
-      {/* Era Filter */}
-      <div className="space-y-3">
-        <div className="flex items-center gap-2 text-sm font-medium">
-          <Filter className="w-4 h-4" />
-          <span>تصفية حسب العصر</span>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {eras.map((era) => (
-            <motion.button
-              key={era}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedEra(era)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedEra === era
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-accent hover:bg-accent/80'
-              }`}
-            >
-              {era}
-            </motion.button>
-          ))}
-        </div>
-      </div>
-
       {/* Results Count */}
       <div className="text-sm text-muted-foreground">
-        {filteredPoets.length} شاعر
+        {poets.length} شاعر
       </div>
 
       {/* Poets Grid */}
@@ -65,9 +33,9 @@ export default function Poets() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="grid grid-cols-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6"
       >
-        {filteredPoets.map((poet, idx) => (
+        {poets.map((poet, idx) => (
           <motion.div
             key={poet.id}
             initial={{ opacity: 0, y: 20 }}
